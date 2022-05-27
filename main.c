@@ -12,5 +12,5 @@ void main()
         printf("%s", linha);
     printf("\n");
 
-    printf("Teste git");
+    printf("Teste git 2");
 }
