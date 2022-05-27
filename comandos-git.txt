@@ -1,0 +1,9 @@
+git commit -m "Mensagem do comit"
+git status 
+git checkout | nome_da_branch
+git checkout -b nome_da_branch | Cria nova branch
+git pull repositorio_remoto Nome_branch | Puxa as alterações do repositorio remoto
+git push repositorio_remoto Nome_branch | Enviar as alterações para o respositorio remoto
+git add . 
+git merge Nome_branch | junta as alterações da branch escolhida com a atual
+git log | mostra os commits da branch
