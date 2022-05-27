@@ -11,4 +11,6 @@ void main()
     while(fgets(linha, 100, fp) != NULL)
         printf("%s", linha);
     printf("\n");
+
+    printf("Teste git");
 }
