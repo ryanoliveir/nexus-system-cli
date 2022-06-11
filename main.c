@@ -227,7 +227,6 @@ void telaDeInstrucao(int opcao) {
 }
 
 void main()
-<<<<<<< HEAD
 {   
     int loopInfinito = 1;
     char escolha;
@@ -281,25 +280,6 @@ void main()
             break;
         }
     } while (loopInfinito);
-
-=======
-{
-    FILE *fp = fopen("./arts/menu.txt", "r");
-    char linha[100];
-    char opcao;
-
-    system("clear");
-    while(fgets(linha, 100, fp) != NULL)
-        printf("%s", linha);
-    printf("\n");
-
-    
-
-    printf("Barbarinha");
-
-    printf("Ryan modificou aqui...");
->>>>>>> 89991b01d03d3d2a7a1c814a2741773eef541947
-}
 
 //Todos: 
 // 1 - Identificar possíveis constantes 
