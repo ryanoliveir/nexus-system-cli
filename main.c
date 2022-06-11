@@ -12,6 +12,14 @@ void clean_stdin(void)
     } while (c != '\n' && c != EOF);
 }
 
+void caixaAlta(char *nomeAluno)
+{
+    int tamStr = strlen(nomeAluno), i;
+    for(i = 0; i <= tamStr; i++)
+        nomeAluno[i] = toupper(nomeAluno[i]);
+  
+}
+
 void geraArquivo(char *matricula, char *nomeAluno, char *id, char *lab, char *data, char *descricao, char *problema) {
     FILE * fp;
     fp = fopen("file.txt", "w");
@@ -45,18 +53,13 @@ void geraArquivo(char *matricula, char *nomeAluno, char *id, char *lab, char *da
     fclose(fp);
 }
 
-void imprimeLabs() {
+void imprimeLabs()
+{
     int i;
-    char labs[5][10] = {
-        "[1] Lab 1",
-        "[2] Lab 2",
-        "[3] Lab 3",
-        "[4] Lab 4",
-        "[5] Lab 5"
-    };
+    char labs[5][10] = {"Lab 1", "Lab 2", "Lab 3", "Lab 4", "Lab 5"};
 
     for(i = 0; i < 5; i++)
-        printf("%s\n", labs[i]);
+        printf("[%d] %s\n", i+1, labs[i]);
 
 }
 
@@ -72,20 +75,21 @@ void entradaDeDados (char *problema) {
     printf("Problema: %s\n\n", problema);
 
     printf("Nome do aluno: ");
-    //Todo: Iniciais do nome devem estar e caixa alta
     //Todo: trocar por _flushall()
     clean_stdin();
     gets(entradaUsuario);
     entradaUsuarioTam = strlen(entradaUsuario);
-    nomeAluno = malloc(entradaUsuarioTam * sizeof(char));
+    nomeAluno = (char *) malloc(entradaUsuarioTam * sizeof(char));
     strcpy(nomeAluno, entradaUsuario);
+    caixaAlta(nomeAluno);
 
     //Todo: checar se matricula esta dentro do padrão
     printf("Matricula do aluno: ");
     scanf("%s", entradaUsuario);
     entradaUsuarioTam = strlen(entradaUsuario);
-    matricula = malloc(entradaUsuarioTam * sizeof(char));
+    matricula = (char *) malloc(entradaUsuarioTam * sizeof(char));
     strcpy(matricula, entradaUsuario);
+    caixaAlta(matricula);
     printf("\n");
 
     printf("ID do computador: ");
@@ -93,11 +97,14 @@ void entradaDeDados (char *problema) {
     entradaUsuarioTam = strlen(entradaUsuario);
     id = malloc(entradaUsuarioTam * sizeof(char));
     strcpy(id, entradaUsuario);
+    caixaAlta(id);
 
+    printf("\n");
+    imprimeLabs();
     printf("Laboratório: ");
     scanf("%s", entradaUsuario);
     entradaUsuarioTam = strlen(entradaUsuario);
-    lab = malloc(entradaUsuarioTam * sizeof(char));
+    lab = (char *) malloc(entradaUsuarioTam * sizeof(char));
     strcpy(lab, entradaUsuario);
 
     //Todo: pegar do sistema?
@@ -106,24 +113,27 @@ void entradaDeDados (char *problema) {
     clean_stdin();
     scanf("%s", entradaUsuario);
     entradaUsuarioTam = strlen(entradaUsuario);
-    data = malloc(entradaUsuarioTam * sizeof(char));
+    data = (char *) malloc(entradaUsuarioTam * sizeof(char));
     strcpy(data, entradaUsuario);
 
-    //Todo: Fazer o controle de limite de caracteres permitido
-    printf("Descrição: ");
+    int i;
+    printf("Descrição (Máx 300): ");
     //Todo: trocar por _flushall()
     clean_stdin();
-    gets(entradaUsuario);
+    fgets(entradaUsuario, MAX_CHAR, stdin);
     entradaUsuarioTam = strlen(entradaUsuario);
-    descricao = malloc(entradaUsuarioTam * sizeof(char));
+    descricao = (char *) malloc(entradaUsuarioTam * sizeof(char));
     strcpy(descricao, entradaUsuario);
+    descricao[0] = toupper(descricao[0]);
 
+    clean_stdin();
     geraArquivo(matricula, nomeAluno, id, lab, data, descricao, problema);
     telaDeEnvio(); 
     return;
 }
 
-int telaDeEnvio () {
+int telaDeEnvio ()
+{
 
     FILE *fp;
 	fp = fopen("file.txt", "r");
@@ -167,7 +177,8 @@ int telaDeEnvio () {
     } while (opcao < '1' || opcao > '2');
 }
 
-void telaDeInstrucao(int opcao) {
+void telaDeInstrucao(int opcao) 
+{
     char tecla;
     switch (opcao)
     {
@@ -280,11 +291,12 @@ void main()
             break;
         }
     } while (loopInfinito);
-
+}
 //Todos: 
 // 1 - Identificar possíveis constantes 
 // 2 - Fazer tratamento de strings (nomes com iniciais maiusculas, etc...)
 // 3 - Controlar o limite de caracteres digitados
 // 4 - Tela de instrução de envio/manipulação do arquivo
-// 5 - Ideias para diminuir o código 
+// 5 - Ideias para diminuir o código
+// 6 - Utilizar a data do sistema 
 
