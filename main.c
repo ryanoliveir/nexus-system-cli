@@ -82,20 +82,20 @@ void entradaDeDados (char *problema) {
 
     //Todo: checar se matricula esta dentro do padrão
     printf("Matricula do aluno: ");
-    scanf("%s", &entradaUsuario);
+    scanf("%s", entradaUsuario);
     entradaUsuarioTam = strlen(entradaUsuario);
     matricula = malloc(entradaUsuarioTam * sizeof(char));
     strcpy(matricula, entradaUsuario);
     printf("\n");
 
     printf("ID do computador: ");
-    scanf("%s", &entradaUsuario);
+    scanf("%s", entradaUsuario);
     entradaUsuarioTam = strlen(entradaUsuario);
     id = malloc(entradaUsuarioTam * sizeof(char));
     strcpy(id, entradaUsuario);
 
     printf("Laboratório: ");
-    scanf("%s", &entradaUsuario);
+    scanf("%s", entradaUsuario);
     entradaUsuarioTam = strlen(entradaUsuario);
     lab = malloc(entradaUsuarioTam * sizeof(char));
     strcpy(lab, entradaUsuario);
@@ -104,7 +104,7 @@ void entradaDeDados (char *problema) {
     printf("Data: ");    
     //Todo: trocar por _flushall()
     clean_stdin();
-    scanf("%s", &entradaUsuario);
+    scanf("%s", entradaUsuario);
     entradaUsuarioTam = strlen(entradaUsuario);
     data = malloc(entradaUsuarioTam * sizeof(char));
     strcpy(data, entradaUsuario);
@@ -285,9 +285,8 @@ void main()
 
 //Todos: 
 // 1 - Identificar possíveis constantes 
-// 2 - Fazer tratamento de strings (nomes com iniciais maiusculas, etc...) 
+// 2 - Fazer tratamento de strings (nomes com iniciais maiusculas, etc...)
 // 3 - Controlar o limite de caracteres digitados
 // 4 - Tela de instrução de envio/manipulação do arquivo
 // 5 - Ideias para diminuir o código 
-
 
