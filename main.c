@@ -20,7 +20,7 @@ void geraArquivo(char *matricula, char *nomeAluno, char *id, char *lab, char *da
     int i;
 
     if(!fp) {
-        printf("Erro. Nï¿½o foi possivel gerar o arquivo!\n");
+        printf("Erro. Não foi possivel gerar o arquivo!\n");
         printf("Pressione enter para voltar ao menu...");
         getchar();
         return;
@@ -29,8 +29,8 @@ void geraArquivo(char *matricula, char *nomeAluno, char *id, char *lab, char *da
     // CabeÃ§alho do arquivo
     fprintf(fp, "\n");
     fprintf(fp, "::####  INSTITUTO FEDERAL\n");
-    fprintf(fp, "::###   DE EDUCAï¿½ï¿½O, CIï¿½NCIA E TECNOLOGIA DE\n");
-    fprintf(fp, "::##    Sï¿½O PAULO\n");
+    fprintf(fp, "::###   DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA DE\n");
+    fprintf(fp, "::##    SÃO PAULO\n");
     
     // Separador 
     for(i = 0; i < 80; i++) 
@@ -44,7 +44,7 @@ void geraArquivo(char *matricula, char *nomeAluno, char *id, char *lab, char *da
     fprintf(fp, "ID do computador: %s\n", id);
     fprintf(fp, "Laboratï¿½rio: %s\n", lab);
     fprintf(fp, "Data: %s\n", data);
-    fprintf(fp, "Descriï¿½ï¿½o: %s\n", descricao);
+    fprintf(fp, "Descrição: %s\n", descricao);
 
     fclose(fp);
 }
@@ -53,7 +53,7 @@ void imprimeLabs()
 {
     int i;
     char labs[5][10] = {"Lab 1", "Lab 2", "Lab 3", "Lab 4", "Lab 5"};
-    printf("   Local da ocorrï¿½ncia:\n");
+    printf("   Local da ocorrência:\n");
     for(i = 0; i < 5; i++)
         printf("        [%d] %s\n", i+1, labs[i]);
 
@@ -76,8 +76,8 @@ void telaDeInstrucao(int opcao)
             printf("  |                          \\\\//                           |\n"); 
             printf("  |                           \\/                            |\n"); 
             printf("  |                                                         |\n"); 
-            printf("  |              Caso sua impressora nï¿½o esteja             |\n"); 
-            printf("  |              funcionando vocï¿½ poderï¿½ salvar             |\n"); 
+            printf("  |              Caso sua impressora não esteja             |\n"); 
+            printf("  |              funcionando você poderá salvar             |\n"); 
             printf("  |              o arquivo consigo como backup.             |\n"); 
             printf("  |                                                         |\n"); 
             printf("  |                                                         |\n"); 
@@ -101,9 +101,9 @@ void telaDeInstrucao(int opcao)
             printf("  |                          \\\\//                           |\n"); 
             printf("  |                           \\/                            |\n"); 
             printf("  |                                                         |\n"); 
-            printf("  |       Vocï¿½ serï¿½ redirecionado para tela de login de     |\n"); 
+            printf("  |       Você será redirecionado para tela de login de     |\n"); 
             printf("  |       seu email. Ao logar, anexe o arquivo gerado e     |\n"); 
-            printf("  |       o envie para o seguinte endereï¿½o:                 |\n"); 
+            printf("  |       o envie para o seguinte endereço:                 |\n"); 
             printf("  |                                                         |\n"); 
             printf("  |                   central_ti@ifsp.edu.br                |\n"); 
             printf("  |                                                         |\n"); 
@@ -132,7 +132,7 @@ int telaDeEnvio ()
         printf("  +---------------------------------------------------------+\n");
         printf("  |                                                        |\n"); 
         printf("  |                                                        |\n"); 
-        printf("  |                 Escolha a opï¿½ï¿½o de envio:              |\n");
+        printf("  |                 Escolha a opção de envio:              |\n");
         printf("  |                                                        |\n"); 
         printf("  |                   _____                                |\n");
         printf("  |                 _|_____|_     +-------+                |\n");
@@ -146,7 +146,7 @@ int telaDeEnvio ()
         printf("  |                                                        |\n"); 
         printf("  +---------------------------------------------------------+\n");
         
-        printf("\t\t  Opcao: ");	
+        printf("\t\t  Opção: ");	
         scanf(" %c", &opcao);
 
         switch(opcao) {
@@ -201,7 +201,7 @@ void entradaDeDados (char *problema) {
     caixaAlta(id);
 
     imprimeLabs();
-    printf("   Opï¿½ï¿½o: ");
+    printf("   Opção: ");
     scanf("%s", entradaUsuario);
     entradaUsuarioTam = strlen(entradaUsuario);
     lab = (char *) malloc(entradaUsuarioTam * sizeof(char));
@@ -215,7 +215,7 @@ void entradaDeDados (char *problema) {
     data = (char *) malloc(entradaUsuarioTam * sizeof(char));
     strcpy(data, entradaUsuario);
 
-    printf("   Descriï¿½ï¿½o (Mï¿½x. 300 caracteres): ");
+    printf("   Descrição (Máx. 300 caracteres): ");
     _flushall();
     fgets(entradaUsuario, MAX_CHAR, stdin);
     entradaUsuarioTam = strlen(entradaUsuario);
@@ -241,7 +241,7 @@ void main()
         printf("                     .  ..___\\  /.  . __.                    \n");        
         printf("                     |\\ |[__  >< |  |(__                     \n");          
         printf("                     | \\|[___/  \\|__|.__)                   \n");        
-        printf("                Conectando problemas a soluï¿½ï¿½es               \n");  
+        printf("                Conectando problemas a soluções               \n");  
         printf("  +---------------------------------------------------------+\n");
         printf("  |        ________________                                 |\n"); 
         printf("  |       /               /|                                |\n"); 
@@ -260,7 +260,7 @@ void main()
         printf("  |                                                         |\n"); 
         printf("  +---------------------------------------------------------+\n");
 
-        printf("\n\t\t\t Opcao: ");
+        printf("\n\t\t\t Opção: ");
         scanf(" %c", &escolha);
         
         if(escolha < '1' || escolha > '5')
@@ -289,12 +289,12 @@ void main()
 //Todos: 
 //!IMPORTANTE!
 // 0 - Definir o local padrao para salvar o arquivo(area de trabalho) 
-// O usuario deverï¿½ ser informado do local para poder enviar por email
+// O usuario deverÃ£o ser informado do local para poder enviar por email
 
-// 1 - Padronizar a interface de usuï¿½rio(quantidade de linhas, margens, etc..) 
-// 2 - Criar funï¿½ï¿½es para os campos de entrada de dados
+// 1 - Padronizar a interface de usuÃ¡rio(quantidade de linhas, margens, etc..) 
+// 2 - Criar funÃ§Ãµes para os campos de entrada de dados
 // 3 - Utilizar a data do sistema 
 // 4 - Filtragem das entradas de dados
-// 5 - Melhorar os nomes das variï¿½veis
-// 7 - Checar por possï¿½veis erros de ortografia
+// 5 - Melhorar os nomes das variÃ¡veis
+// 7 - Checar por possÃ­veis erros de ortografia
 
