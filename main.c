@@ -3,9 +3,22 @@
 #include <string.h>
 #include <ctype.h>
 #include <locale.h>
+#include <time.h>
 
 #define MAX_CHAR 300
 
+
+void dataSistema(){
+
+    struct tm *p;
+    time_t seconds;
+
+    time(&seconds);
+    p = localtime(&seconds);
+
+    printf("Data: %d/%d/%d", p -> tm_mday, p -> tm_mon + 1, p -> tm_year + 1900);
+
+}
 void caixaAlta(char *nomeAluno)
 {
     int tamStr = strlen(nomeAluno), i;
@@ -14,7 +27,7 @@ void caixaAlta(char *nomeAluno)
   
 }
 
-void geraArquivo(char *matricula, char *nomeAluno, char *id, char *lab, char *data, char *descricao, char *problema) {
+void geraArquivo(char *matricula, char *nomeAluno, char *id, char *lab, char *descricao, char *problema) {
     FILE * fp;
     fp = fopen("./file.txt", "w");
     int i;
@@ -42,8 +55,8 @@ void geraArquivo(char *matricula, char *nomeAluno, char *id, char *lab, char *da
     fprintf(fp, "Nome do aluno: %s\n", nomeAluno);
     fprintf(fp, "Matricula: %s\n\n", matricula);
     fprintf(fp, "ID do computador: %s\n", id);
-    fprintf(fp, "Laboratï¿½rio: %s\n", lab);
-    fprintf(fp, "Data: %s\n", data);
+    fprintf(fp, "Laboratório: %s\n", lab);
+    fprintf(fp, "Data:\n"); // chamar função dataSistema();
     fprintf(fp, "Descrição: %s\n", descricao);
 
     fclose(fp);
@@ -118,7 +131,7 @@ void telaDeInstrucao(int opcao)
     
 }
 
-int telaDeEnvio ()
+void telaDeEnvio ()
 {
 
     FILE *fp;
@@ -165,7 +178,7 @@ int telaDeEnvio ()
 
 void entradaDeDados (char *problema) {
 
-    char entradaUsuario[MAX_CHAR], *nomeAluno, *matricula, *id, *lab, *data, *descricao;
+    char entradaUsuario[MAX_CHAR], *nomeAluno, *matricula, *id, *lab, *descricao; //*data,
     int entradaUsuarioTam;
 
     system("cls");
@@ -175,9 +188,13 @@ void entradaDeDados (char *problema) {
     printf("   Problema: %s\n\n", problema);
     
     printf("  +- Dados do requisitor ----------------------------+\n");
+
+    //Filtro do Nome do Aluno (Não pode ter número)
     printf("   Nome do aluno: ");
     _flushall();
     gets(entradaUsuario);
+
+    // Filtro 
     entradaUsuarioTam = strlen(entradaUsuario);
     nomeAluno = (char *) malloc(entradaUsuarioTam * sizeof(char));
     strcpy(nomeAluno, entradaUsuario);
@@ -208,12 +225,12 @@ void entradaDeDados (char *problema) {
     strcpy(lab, entradaUsuario);
 
     //Todo: pegar do sistema?
-    printf("   Data: ");    
-    _flushall();
-    scanf("%s", entradaUsuario);
-    entradaUsuarioTam = strlen(entradaUsuario);
-    data = (char *) malloc(entradaUsuarioTam * sizeof(char));
-    strcpy(data, entradaUsuario);
+    //printf("   Data: ");    
+    //_flushall();
+    //scanf("%s", entradaUsuario);
+    //entradaUsuarioTam = strlen(entradaUsuario);
+    //data = (char *) malloc(entradaUsuarioTam * sizeof(char));
+    //strcpy(data, entradaUsuario);
 
     printf("   Descrição (Máx. 300 caracteres): ");
     _flushall();
@@ -225,12 +242,15 @@ void entradaDeDados (char *problema) {
     descricao[0] = toupper(descricao[0]);
 
     _flushall();
-    geraArquivo(matricula, nomeAluno, id, lab, data, descricao, problema);
+    geraArquivo(matricula, nomeAluno, id, lab, descricao, problema);
     telaDeEnvio(); 
     return;
 }
 
-void main()
+
+
+
+int main()
 {   
     setlocale(LC_ALL, "Portuguese");
     int loopInfinito = 1;
@@ -285,6 +305,8 @@ void main()
             break;
         }
     } while (loopInfinito);
+
+    return 0;
 }
 //Todos: 
 //!IMPORTANTE!
@@ -295,6 +317,6 @@ void main()
 // 2 - Criar funÃ§Ãµes para os campos de entrada de dados
 // 3 - Utilizar a data do sistema 
 // 4 - Filtragem das entradas de dados
-// 5 - Melhorar os nomes das variÃ¡veis
+// 5 - Melhorar os nomes das variáiveis
 // 7 - Checar por possÃ­veis erros de ortografia
 
