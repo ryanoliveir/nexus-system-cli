@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define MAX_CHAR 300
 
@@ -61,6 +62,111 @@ void imprimeLabs()
     for(i = 0; i < 5; i++)
         printf("[%d] %s\n", i+1, labs[i]);
 
+}
+
+void telaDeInstrucao(int opcao) 
+{
+    char tecla;
+    switch (opcao)
+    {
+    case 1:
+        do {
+            system("clear || cls");
+            printf("+---------------------------------------------------------+\n");
+            printf("|                                                         |\n"); 
+            printf("|                Arquivo gerado com sucesso!              |\n"); 
+            printf("|                                                         |\n"); 
+            printf("|                              //                         |\n"); 
+            printf("|                         \\\\  //                          |\n"); 
+            printf("|                          \\\\//                           |\n"); 
+            printf("|                           \\/                            |\n"); 
+            printf("|                                                         |\n"); 
+            printf("|              Caso sua impressora não esteja             |\n"); 
+            printf("|              funcionando você podera salvar             |\n"); 
+            printf("|              o arquivo consigo como backup              |\n"); 
+            printf("|                                                         |\n"); 
+            printf("|                                                         |\n"); 
+            printf("|         Pressione enter para retornar ao menu...        |\n"); 
+            printf("|                                                         |\n"); 
+            printf("+---------------------------------------------------------+\n");
+            //Todo: trocar por _flushall()
+            clean_stdin();
+            scanf("%c", &tecla);
+        } while (tecla != '\n');
+        break;
+    
+    case 2:
+        do {
+            system("clear || cls");
+            printf("+---------------------------------------------------------+\n");
+            printf("|                                                         |\n"); 
+            printf("|                Arquivo gerado com sucesso!              |\n"); 
+            printf("|                                                         |\n"); 
+            printf("|                              //                         |\n"); 
+            printf("|                         \\\\  //                          |\n"); 
+            printf("|                          \\\\//                           |\n"); 
+            printf("|                           \\/                            |\n"); 
+            printf("|                                                         |\n"); 
+            printf("|       Você será redirecionado para tela de login de     |\n"); 
+            printf("|       seu email. Ao logar, anexe o arquivo gerado e     |\n"); 
+            printf("|       o envie para o seguinte endereço:                 |\n"); 
+            printf("|                   central_ti@ifsp.edu.br                |\n"); 
+            printf("|                                                         |\n"); 
+            printf("|         Pressione enter para retornar ao menu...        |\n"); 
+            printf("|                                                         |\n"); 
+            printf("+---------------------------------------------------------+\n");
+            //Todo: trocar por _flushall()
+            clean_stdin();
+            scanf("%c", &tecla);
+        } while (tecla != '\n');
+        break;
+    }
+    
+}
+
+int telaDeEnvio ()
+{
+
+    FILE *fp;
+	fp = fopen("file.txt", "r");
+	char opcao;
+		
+	fclose(fp);
+
+    do {
+        system("clear || cls");
+        printf("+---------------------------------------------------------+\n");
+        printf("|                                                         |\n"); 
+        printf("|                                                         |\n"); 
+        printf("|                  Escolha a opção de envio:              |\n");
+        printf("|                                                         |\n"); 
+        printf("|                    _____                                |\n");
+        printf("|                  _|_____|_     +-------+                |\n");
+        printf("|                  | _____-|     |  \\_/  |                |\n");
+        printf("|                  |_|   |_|     +-------+                |\n");
+        printf("|                    |___|                                |\n");
+        printf("|                                                         |\n"); 
+        printf("|                [1] Impresso	 [2] Email                |\n");
+        printf("|                                                         |\n"); 
+        printf("|                                                         |\n"); 
+        printf("|                                                         |\n"); 
+        printf("+---------------------------------------------------------+\n");
+        
+        printf("\t\t  Opcao: ");	
+        scanf(" %c", &opcao);
+
+        switch(opcao) {
+            case '1':
+                system("start notepad /p file.txt");
+                telaDeInstrucao(1);
+                break;
+            case '2':
+                system("start explorer https://login.live.com/");
+                telaDeInstrucao(2);
+                break;
+        }
+        
+    } while (opcao < '1' || opcao > '2');
 }
 
 void entradaDeDados (char *problema) {
@@ -132,112 +238,8 @@ void entradaDeDados (char *problema) {
     return;
 }
 
-int telaDeEnvio ()
-{
-
-    FILE *fp;
-	fp = fopen("file.txt", "r");
-	char opcao;
-		
-	fclose(fp);
-
-    do {
-        system("clear || cls");
-        printf("+---------------------------------------------------------+\n");
-        printf("|                                                         |\n"); 
-        printf("|                                                         |\n"); 
-        printf("|                  Escolha a opção de envio:              |\n");
-        printf("|                                                         |\n"); 
-        printf("|                    _____                                |\n");
-        printf("|                  _|_____|_     +-------+                |\n");
-        printf("|                  | _____-|     |  \\_/  |                |\n");
-        printf("|                  |_|   |_|     +-------+                |\n");
-        printf("|                    |___|                                |\n");
-        printf("|                                                         |\n"); 
-        printf("|                [1] Impresso	 [2] Email                |\n");
-        printf("|                                                         |\n"); 
-        printf("|                                                         |\n"); 
-        printf("|                                                         |\n"); 
-        printf("+---------------------------------------------------------+\n");
-        
-        printf("\t\t  Opcao: ");	
-        scanf(" %c", &opcao);
-
-        switch(opcao) {
-            case '1':
-                system("start notepad /p file.txt");
-                telaDeInstrucao(1);
-                break;
-            case '2':
-                system("start explorer https://login.live.com/");
-                telaDeInstrucao(2);
-                break;
-        }
-        
-    } while (opcao < '1' || opcao > '2');
-}
-
-void telaDeInstrucao(int opcao) 
-{
-    char tecla;
-    switch (opcao)
-    {
-    case 1:
-        do {
-            system("clear || cls");
-            printf("+---------------------------------------------------------+\n");
-            printf("|                                                         |\n"); 
-            printf("|                Arquivo gerado com sucesso!              |\n"); 
-            printf("|                                                         |\n"); 
-            printf("|                              //                         |\n"); 
-            printf("|                         \\\\  //                          |\n"); 
-            printf("|                          \\\\//                           |\n"); 
-            printf("|                           \\/                            |\n"); 
-            printf("|                                                         |\n"); 
-            printf("|              Caso sua impressora não esteja             |\n"); 
-            printf("|              funcionando você podera salvar             |\n"); 
-            printf("|              o arquivo consigo como backup              |\n"); 
-            printf("|                                                         |\n"); 
-            printf("|                                                         |\n"); 
-            printf("|         Pressione enter para retornar ao menu...        |\n"); 
-            printf("|                                                         |\n"); 
-            printf("+---------------------------------------------------------+\n");
-            //Todo: trocar por _flushall()
-            clean_stdin();
-            scanf("%c", &tecla);
-        } while (tecla != '\n');
-        break;
-    
-    case 2:
-        do {
-            system("clear || cls");
-            printf("+---------------------------------------------------------+\n");
-            printf("|                                                         |\n"); 
-            printf("|                Arquivo gerado com sucesso!              |\n"); 
-            printf("|                                                         |\n"); 
-            printf("|                              //                         |\n"); 
-            printf("|                         \\\\  //                          |\n"); 
-            printf("|                          \\\\//                           |\n"); 
-            printf("|                           \\/                            |\n"); 
-            printf("|                                                         |\n"); 
-            printf("|       Você será redirecionado para tela de login de     |\n"); 
-            printf("|       seu email. Ao logar, anexe o arquivo gerado e     |\n"); 
-            printf("|       o envie para o seguinte endereço:                 |\n"); 
-            printf("|                   central_ti@ifsp.edu.br                |\n"); 
-            printf("|                                                         |\n"); 
-            printf("|         Pressione enter para retornar ao menu...        |\n"); 
-            printf("|                                                         |\n"); 
-            printf("+---------------------------------------------------------+\n");
-            //Todo: trocar por _flushall()
-            clean_stdin();
-            scanf("%c", &tecla);
-        } while (tecla != '\n');
-        break;
-    }
-    
-}
-
 void main()
+
 {   
     int loopInfinito = 1;
     char escolha;
