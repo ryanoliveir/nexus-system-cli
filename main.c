@@ -70,16 +70,6 @@ void geraArquivo(char *matricula, char *nomeAluno, char *id, char *lab, char *de
     fclose(fp);
 }
 
-void imprimeLabs()
-{
-    int i;
-    char labs[5][10] = {"Lab 1", "Lab 2", "Lab 3", "Lab 4", "Lab 5"};
-    printf("   Local da ocorrência:\n");
-    for(i = 0; i < 5; i++)
-        printf("        [%d] %s\n", i+1, labs[i]);
-
-}
-
 void telaDeInstrucao(int opcao) 
 {
     char tecla;
@@ -184,6 +174,26 @@ void telaDeEnvio ()
     } while (opcao < '1' || opcao > '2');
 }
 
+char * matriculaAluno()
+{   
+    char *ptMatricula, matricula[TAM_MATRICULA + 1];
+    do {
+        printf("   Matricula: ");
+        scanf("%s",matricula);
+
+        if(strlen(matricula) != TAM_MATRICULA )
+        	printf("   *** Matricula inválida! ***\n");
+
+    } while (strlen(matricula) != TAM_MATRICULA );
+   
+    caixaAlta(matricula);
+    ptMatricula = (char *)malloc(strlen(matricula) * sizeof(char));
+    strcpy(ptMatricula, matricula);
+
+    return ptMatricula;
+
+}
+
 char * localOcorrencia()
 {
     int opcao, i;
@@ -229,13 +239,8 @@ void entradaDeDados (char *problema)
     strcpy(nomeAluno, entradaUsuario);
     caixaAlta(nomeAluno);
 
-    //Todo: checar se matricula esta dentro do padrï¿½o
-    printf("   Matricula: ");
-    scanf("%s", entradaUsuario);
-    entradaUsuarioTam = strlen(entradaUsuario);
-    matricula = (char *) malloc(entradaUsuarioTam * sizeof(char));
-    strcpy(matricula, entradaUsuario);
-    caixaAlta(matricula);
+    //Entrada da matricula do aluno
+    matricula = matriculaAluno();
     printf("\n");
 
     printf("  +- Dados do problema ------------------------------+\n");
@@ -246,6 +251,7 @@ void entradaDeDados (char *problema)
     strcpy(id, entradaUsuario);
     caixaAlta(id);
 
+    // Escolha do local de ocorrencia do problema
     lab = localOcorrencia();
     
     printf("   Descrição (Máx. 300 caracteres): ");
