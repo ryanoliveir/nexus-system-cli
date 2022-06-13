@@ -6,9 +6,10 @@
 #include <time.h>
 
 #define MAX_CHAR 300
+#define TAM_MATRICULA 9
 
-
-void dataSistema(){
+char * dataSistema()
+{
 
     struct tm *p;
     time_t seconds;
@@ -16,9 +17,16 @@ void dataSistema(){
     time(&seconds);
     p = localtime(&seconds);
 
-    printf("Data: %d/%d/%d", p -> tm_mday, p -> tm_mon + 1, p -> tm_year + 1900);
+    int dia = p -> tm_mday;
+    int mes = p -> tm_mon + 1;
+    int ano = p -> tm_year + 1900;
 
+    char * data = malloc(11 * sizeof(char));
+    snprintf(data, 11, "%02d/%02d/%d", dia, mes, ano);
+
+    return data;
 }
+
 void caixaAlta(char *nomeAluno)
 {
     int tamStr = strlen(nomeAluno), i;
@@ -27,7 +35,8 @@ void caixaAlta(char *nomeAluno)
   
 }
 
-void geraArquivo(char *matricula, char *nomeAluno, char *id, char *lab, char *descricao, char *problema) {
+void geraArquivo(char *matricula, char *nomeAluno, char *id, char *lab, char *descricao, char *problema) 
+{
     FILE * fp;
     fp = fopen("./file.txt", "w");
     int i;
@@ -56,7 +65,7 @@ void geraArquivo(char *matricula, char *nomeAluno, char *id, char *lab, char *de
     fprintf(fp, "Matricula: %s\n\n", matricula);
     fprintf(fp, "ID do computador: %s\n", id);
     fprintf(fp, "Laboratório: %s\n", lab);
-    fprintf(fp, "Data:\n"); // chamar função dataSistema();
+    fprintf(fp, "Data: %s\n",  dataSistema());
     fprintf(fp, "Descrição: %s\n", descricao);
 
     fclose(fp);
@@ -176,7 +185,8 @@ void telaDeEnvio ()
     } while (opcao < '1' || opcao > '2');
 }
 
-void entradaDeDados (char *problema) {
+void entradaDeDados (char *problema) 
+{
 
     char entradaUsuario[MAX_CHAR], *nomeAluno, *matricula, *id, *lab, *descricao; //*data,
     int entradaUsuarioTam;
@@ -247,9 +257,6 @@ void entradaDeDados (char *problema) {
     return;
 }
 
-
-
-
 int main()
 {   
     setlocale(LC_ALL, "Portuguese");
@@ -275,8 +282,8 @@ int main()
         printf("  |     |____>______<_____/     \\                           |\n");             
         printf("  |    / = ==== ==== ==== /|    _|_                         |\n"); 
         printf("  |   / ========= === == / /   ////                         |\n"); 
-        printf("  |  /   ========= ===  / /   /___/                         |\n"); 
-        printf("  | <__________________<_/                                  |\n"); 
+        printf("  |  /   ========= ===  / /   /   /                         |\n"); 
+        printf("  | <__________________<_/    ¯¯¯¯                          |\n"); 
         printf("  |                                                         |\n"); 
         printf("  +---------------------------------------------------------+\n");
 
