@@ -10,7 +10,6 @@
 
 char * dataSistema()
 {
-
     struct tm *p;
     time_t seconds;
 
@@ -48,7 +47,7 @@ void geraArquivo(char *matricula, char *nomeAluno, char *id, char *lab, char *de
         return;
     }
 
-    // CabeÃ§alho do arquivo
+    // Cabeçalho do arquivo
     fprintf(fp, "\n");
     fprintf(fp, "::####  INSTITUTO FEDERAL\n");
     fprintf(fp, "::###   DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA DE\n");
@@ -185,6 +184,26 @@ void telaDeEnvio ()
     } while (opcao < '1' || opcao > '2');
 }
 
+char * localOcorrencia()
+{
+    int opcao, i;
+    char labs[5][10] = {"Lab 1", "Lab 2", "Lab 3", "Lab 4", "Lab 5"}, *lab;
+
+    do {
+        printf("   Local da ocorrência:\n");
+        for(i = 0; i < 5; i++)
+            printf("        [%d] %s\n", i+1, labs[i]);
+        
+        printf("   Opcao: ");
+        _flushall();
+        scanf("%d", &opcao);
+    } while (opcao < 1 || opcao > 5);
+
+    lab = (char *) malloc(5);
+    strcpy(lab, labs[opcao - 1]);
+    return lab;
+}
+
 void entradaDeDados (char *problema) 
 {
 
@@ -227,21 +246,8 @@ void entradaDeDados (char *problema)
     strcpy(id, entradaUsuario);
     caixaAlta(id);
 
-    imprimeLabs();
-    printf("   Opção: ");
-    scanf("%s", entradaUsuario);
-    entradaUsuarioTam = strlen(entradaUsuario);
-    lab = (char *) malloc(entradaUsuarioTam * sizeof(char));
-    strcpy(lab, entradaUsuario);
-
-    //Todo: pegar do sistema?
-    //printf("   Data: ");    
-    //_flushall();
-    //scanf("%s", entradaUsuario);
-    //entradaUsuarioTam = strlen(entradaUsuario);
-    //data = (char *) malloc(entradaUsuarioTam * sizeof(char));
-    //strcpy(data, entradaUsuario);
-
+    lab = localOcorrencia();
+    
     printf("   Descrição (Máx. 300 caracteres): ");
     _flushall();
     fgets(entradaUsuario, MAX_CHAR, stdin);
