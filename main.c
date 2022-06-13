@@ -26,11 +26,11 @@ char * dataSistema()
     return data;
 }
 
-void caixaAlta(char *nomeAluno)
+void caixaAlta(char *string)
 {
-    int tamStr = strlen(nomeAluno), i;
+    int tamStr = strlen(string), i;
     for(i = 0; i <= tamStr; i++)
-        nomeAluno[i] = toupper(nomeAluno[i]);
+        string[i] = toupper(string[i]);
   
 }
 
@@ -211,7 +211,9 @@ char * localOcorrencia()
 
     lab = (char *) malloc(5);
     strcpy(lab, labs[opcao - 1]);
+
     return lab;
+
 }
 
 char * descricaoProblema(char * entradaUsuario)
@@ -230,6 +232,7 @@ char * descricaoProblema(char * entradaUsuario)
 
     
     return descricao;
+
 }
 
 void entradaDeDados (char *problema) 
