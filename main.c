@@ -214,6 +214,24 @@ char * localOcorrencia()
     return lab;
 }
 
+char * descricaoProblema(char * entradaUsuario)
+{
+    char *descricao;
+    int entradaUsuarioTam;
+
+    printf("   Descrição (Máx. 300 caracteres): ");
+    _flushall();
+    fgets(entradaUsuario, MAX_CHAR, stdin);
+
+    descricao = (char *) malloc(strlen(entradaUsuario) * sizeof(char));
+    entradaUsuario[strlen(entradaUsuario) - 1] = '\0';
+    descricao[0] = toupper(descricao[0]);
+    strcpy(descricao, entradaUsuario);
+
+    
+    return descricao;
+}
+
 void entradaDeDados (char *problema) 
 {
 
@@ -254,14 +272,8 @@ void entradaDeDados (char *problema)
     // Escolha do local de ocorrencia do problema
     lab = localOcorrencia();
     
-    printf("   Descrição (Máx. 300 caracteres): ");
-    _flushall();
-    fgets(entradaUsuario, MAX_CHAR, stdin);
-    entradaUsuarioTam = strlen(entradaUsuario);
-    entradaUsuario[entradaUsuarioTam - 1] = '\0';
-    descricao = (char *) malloc(entradaUsuarioTam * sizeof(char));
-    strcpy(descricao, entradaUsuario);
-    descricao[0] = toupper(descricao[0]);
+    //Entrada da matricula do aluno
+    descricao = descricaoProblema(entradaUsuario);
 
     _flushall();
     geraArquivo(matricula, nomeAluno, id, lab, descricao, problema);
@@ -308,7 +320,7 @@ int main()
         switch (escolha)
         {
         case '1':
-            entradaDeDados("Computador");
+            entradaDeDados("Computador / OS");
             break;
         case '2':
             entradaDeDados("Rede / Internet");
