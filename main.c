@@ -238,6 +238,9 @@ void entradaDeDados (char *problema)
     char entradaUsuario[MAX_CHAR], *nomeAluno, *matricula, *id, *lab, *descricao; //*data,
     int entradaUsuarioTam;
 
+    // Variaveis do filtro
+    int loop = 1, test = 0;
+
     system("cls");
     printf("  +--------------------------------------------------+\n");
     printf("  |                 Abertura de Chamado              |\n");
@@ -246,12 +249,31 @@ void entradaDeDados (char *problema)
     
     printf("  +- Dados do requisitor ----------------------------+\n");
 
-    //Filtro do Nome do Aluno (Não pode ter número)
-    printf("   Nome do aluno: ");
-    _flushall();
-    gets(entradaUsuario);
+    //Filtro do Nome do Aluno (Não pode ter número nem caracteres especiais)
+    do
+    {
 
-    // Filtro 
+        printf("   Nome do aluno: ");
+        _flushall();
+        gets(entradaUsuario);
+
+        for (int i = 0; entradaUsuario[i] != '\0'; i++){
+
+            if(isdigit(entradaUsuario[i]) || ispunct(entradaUsuario[i])){
+                printf("   Valores inválidos encontrados. Tente novamente!\n");
+                test++;
+                break;
+            }
+        }
+
+        if(!(test != 0))
+            loop = 0;
+        
+        test--;
+
+    } while (loop);
+    
+
     entradaUsuarioTam = strlen(entradaUsuario);
     nomeAluno = (char *) malloc(entradaUsuarioTam * sizeof(char));
     strcpy(nomeAluno, entradaUsuario);
