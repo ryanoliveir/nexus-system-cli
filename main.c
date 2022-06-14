@@ -7,6 +7,7 @@
 
 #define MAX_CHAR 300
 #define TAM_MATRICULA 9
+#define ID_TAM 13
 
 char * dataSistema()
 {
@@ -141,20 +142,20 @@ void telaDeEnvio ()
     do {
         system("cls");
         printf("  +---------------------------------------------------------+\n");
-        printf("  |                                                        |\n"); 
-        printf("  |                                                        |\n"); 
-        printf("  |                 Escolha a opção de envio:              |\n");
-        printf("  |                                                        |\n"); 
-        printf("  |                   _____                                |\n");
-        printf("  |                 _|_____|_     +-------+                |\n");
-        printf("  |                 | _____-|     |  \\_/  |                |\n");
-        printf("  |                 |_|   |_|     +-------+                |\n");
-        printf("  |                   |___|                                |\n");
-        printf("  |                                                        |\n"); 
-        printf("  |                [1] Impresso	 [2] Email                 |\n");
-        printf("  |                                                        |\n"); 
-        printf("  |                                                        |\n"); 
-        printf("  |                                                        |\n"); 
+        printf("  |                                                         |\n"); 
+        printf("  |                                                         |\n"); 
+        printf("  |                 Escolha a opção de envio:               |\n");
+        printf("  |                                                         |\n"); 
+        printf("  |                _____                                    |\n");
+        printf("  |              _|_____|_          +-------+               |\n");
+        printf("  |              | _____-|          |  \\_/  |              |\n");
+        printf("  |              |_|   |_|          +-------+               |\n");
+        printf("  |                |___|                                    |\n");
+        printf("  |                                                         |\n"); 
+        printf("  |            [1] Impresso	        [2] Email               |\n");
+        printf("  |                                                         |\n"); 
+        printf("  |                                                         |\n"); 
+        printf("  |                                                         |\n"); 
         printf("  +---------------------------------------------------------+\n");
         
         printf("\t\t  Opção: ");	
@@ -184,13 +185,36 @@ char * matriculaAluno()
         if(strlen(matricula) != TAM_MATRICULA )
         	printf("   *** Matricula inválida! ***\n");
 
-    } while (strlen(matricula) != TAM_MATRICULA );
+    } while (strlen(matricula) != TAM_MATRICULA);
    
     caixaAlta(matricula);
     ptMatricula = (char *)malloc(strlen(matricula) * sizeof(char));
     strcpy(ptMatricula, matricula);
 
     return ptMatricula;
+
+}
+
+char * idComputador()
+{   
+    char id[ID_TAM+1], *ptrID;
+
+    do {
+
+        printf("   ID do computador: ");
+        scanf("%s", id);
+        
+        if(strlen(id) != ID_TAM) {
+            printf("   *** ID inválido! ***\n");
+        }
+
+    } while(strlen(id) != ID_TAM); 
+
+    ptrID = malloc( ID_TAM * sizeof(char));
+    caixaAlta(id);
+    strcpy(ptrID, id);
+
+    return ptrID;
 
 }
 
@@ -229,7 +253,6 @@ char * descricaoProblema(char * entradaUsuario)
     entradaUsuario[strlen(entradaUsuario) - 1] = '\0';
     descricao[0] = toupper(descricao[0]);
     strcpy(descricao, entradaUsuario);
-
     
     return descricao;
 
@@ -253,8 +276,7 @@ void entradaDeDados (char *problema)
     printf("  +- Dados do requisitor ----------------------------+\n");
 
     //Filtro do Nome do Aluno (Não pode ter número nem caracteres especiais)
-    do
-    {
+    do {
 
         printf("   Nome do aluno: ");
         _flushall();
@@ -263,7 +285,7 @@ void entradaDeDados (char *problema)
         for (int i = 0; entradaUsuario[i] != '\0'; i++){
 
             if(isdigit(entradaUsuario[i]) || ispunct(entradaUsuario[i])){
-                printf("   Valores inválidos encontrados. Tente novamente!\n");
+                printf("   *** Valores inválidos encontrado! ***\n");
                 test++;
                 break;
             }
@@ -275,8 +297,6 @@ void entradaDeDados (char *problema)
         test--;
 
     } while (loop);
-    
-
     entradaUsuarioTam = strlen(entradaUsuario);
     nomeAluno = (char *) malloc(entradaUsuarioTam * sizeof(char));
     strcpy(nomeAluno, entradaUsuario);
@@ -287,12 +307,9 @@ void entradaDeDados (char *problema)
     printf("\n");
 
     printf("  +- Dados do problema ------------------------------+\n");
-    printf("   ID do computador: ");
-    scanf("%s", entradaUsuario);
-    entradaUsuarioTam = strlen(entradaUsuario);
-    id = malloc(entradaUsuarioTam * sizeof(char));
-    strcpy(id, entradaUsuario);
-    caixaAlta(id);
+    
+    //Entrada da identificação do computador
+    id = idComputador();
 
     // Escolha do local de ocorrencia do problema
     lab = localOcorrencia();
@@ -300,7 +317,7 @@ void entradaDeDados (char *problema)
     //Entrada da matricula do aluno
     descricao = descricaoProblema(entradaUsuario);
 
-    _flushall();
+    //_flushall();
     geraArquivo(matricula, nomeAluno, id, lab, descricao, problema);
     telaDeEnvio(); 
     return;
@@ -332,7 +349,7 @@ int main()
         printf("  |    / = ==== ==== ==== /|    _|_                         |\n"); 
         printf("  |   / ========= === == / /   ////                         |\n"); 
         printf("  |  /   ========= ===  / /   /   /                         |\n"); 
-        printf("  | <__________________<_/    ¯¯¯¯                          |\n"); 
+        printf("  | <__________________<_/    '--'                          |\n"); 
         printf("  |                                                         |\n"); 
         printf("  +---------------------------------------------------------+\n");
 
