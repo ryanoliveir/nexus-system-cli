@@ -148,17 +148,17 @@ void telaDeEnvio ()
         printf("  |                                                         |\n"); 
         printf("  |                _____                                    |\n");
         printf("  |              _|_____|_          +-------+               |\n");
-        printf("  |              | _____-|          |  \\_/  |              |\n");
+        printf("  |              | _____-|          |  \\_/  |               |\n");
         printf("  |              |_|   |_|          +-------+               |\n");
         printf("  |                |___|                                    |\n");
         printf("  |                                                         |\n"); 
-        printf("  |            [1] Impresso	        [2] Email               |\n");
+        printf("  |            [1] Impresso         [2] Email               |\n");
         printf("  |                                                         |\n"); 
         printf("  |                                                         |\n"); 
         printf("  |                                                         |\n"); 
         printf("  +---------------------------------------------------------+\n");
+        printf("                           Opção: ");	
         
-        printf("\t\t  Opção: ");	
         scanf(" %c", &opcao);
 
         switch(opcao) {
@@ -304,8 +304,8 @@ void entradaDeDados (char *problema)
 
     //Entrada da matricula do aluno
     matricula = matriculaAluno();
-    printf("\n");
-
+    
+	printf("\n");
     printf("  +- Dados do problema ------------------------------+\n");
     
     //Entrada da identificação do computador
