@@ -7,6 +7,7 @@
 
 #define MAX_CHAR 300
 #define TAM_MATRICULA 9
+#define NOMEALUNO_MAX 100
 #define ID_TAM 13
 
 char * dataSistema()
@@ -35,7 +36,7 @@ void caixaAlta(char *string)
   
 }
 
-void geraArquivo(char *matricula, char *nomeAluno, char *id, char *lab, char *descricao, char *problema) 
+void geraArquivo(char *matricula, char *nome_Aluno, char *id, char *lab, char *descricao, char *problema) 
 {
     FILE * fp;
     fp = fopen("./file.txt", "w");
@@ -61,7 +62,7 @@ void geraArquivo(char *matricula, char *nomeAluno, char *id, char *lab, char *de
 
     // Corpo do documento
     fprintf(fp, "Problema relacionado: %s\n\n", problema);
-    fprintf(fp, "Nome do aluno: %s\n", nomeAluno);
+    fprintf(fp, "Nome do aluno: %s\n", nome_Aluno);
     fprintf(fp, "Matricula: %s\n\n", matricula);
     fprintf(fp, "ID do computador: %s\n", id);
     fprintf(fp, "Laboratório: %s\n", lab);
@@ -195,6 +196,39 @@ char * matriculaAluno()
 
 }
 
+char * nomeDoAluno(){
+
+    char *pnomeAluno, nome_Aluno[NOMEALUNO_MAX];
+    int loop = 1, test = 0;
+
+    do
+    {
+        printf("   Nome do aluno: ");
+        _flushall();
+        gets(nome_Aluno);
+        
+        for (int i = 0; nome_Aluno[i] != '\0'; i++){
+
+            if(isdigit(nome_Aluno[i]) || ispunct(nome_Aluno[i])){
+                printf("   Valores invalidos encontrados. Tente novamente!\n");
+                test++;
+                break;
+            }
+        }
+
+        if(!(test != 0))
+            loop = 0;
+        test--;
+    } while (loop);
+
+    caixaAlta(nome_Aluno);
+    pnomeAluno = (char *)malloc(strlen(nome_Aluno) * sizeof(char));
+    strcpy(pnomeAluno, nome_Aluno);
+
+    return pnomeAluno;
+    
+}
+
 char * idComputador()
 {   
     char id[ID_TAM+1], *ptrID;
@@ -243,7 +277,7 @@ char * localOcorrencia()
 char * descricaoProblema(char * entradaUsuario)
 {
     char *descricao;
-    int entradaUsuarioTam;
+    //int entradaUsuarioTam;
 
     printf("   Descrição (Máx. 300 caracteres): ");
     _flushall();
@@ -262,10 +296,6 @@ void entradaDeDados (char *problema)
 {
 
     char entradaUsuario[MAX_CHAR], *nomeAluno, *matricula, *id, *lab, *descricao; //*data,
-    int entradaUsuarioTam;
-
-    // Variaveis do filtro
-    int loop = 1, test = 0;
 
     system("cls");
     printf("  +--------------------------------------------------+\n");
@@ -276,31 +306,7 @@ void entradaDeDados (char *problema)
     printf("  +- Dados do requisitor ----------------------------+\n");
 
     //Filtro do Nome do Aluno (Não pode ter número nem caracteres especiais)
-    do {
-
-        printf("   Nome do aluno: ");
-        _flushall();
-        gets(entradaUsuario);
-
-        for (int i = 0; entradaUsuario[i] != '\0'; i++){
-
-            if(isdigit(entradaUsuario[i]) || ispunct(entradaUsuario[i])){
-                printf("   *** Valores inválidos encontrado! ***\n");
-                test++;
-                break;
-            }
-        }
-
-        if(!(test != 0))
-            loop = 0;
-        
-        test--;
-
-    } while (loop);
-    entradaUsuarioTam = strlen(entradaUsuario);
-    nomeAluno = (char *) malloc(entradaUsuarioTam * sizeof(char));
-    strcpy(nomeAluno, entradaUsuario);
-    caixaAlta(nomeAluno);
+    nomeAluno = nomeDoAluno();
 
     //Entrada da matricula do aluno
     matricula = matriculaAluno();
