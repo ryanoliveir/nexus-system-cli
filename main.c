@@ -10,6 +10,79 @@
 #define NOMEALUNO_MAX 100
 #define ID_TAM 13
 
+
+// ProtÛtipos das funÁıes
+char * dataSistema();
+void caixaAlta(char *string);
+void geraArquivo(char *matricula, char *nome_Aluno, char *id, char *lab, char *descricao, char *problema) ;
+void telaDeInstrucao(int opcao);
+void telaDeEnvio();
+char * matriculaAluno();
+char * nomeDoAluno();
+char * idComputador();
+void entradaDeDados (char *problema);
+
+
+
+int main()
+{   
+    setlocale(LC_ALL, "Portuguese");
+    int loopInfinito = 1;
+    char escolha;
+
+    do {
+        system("cls");
+        printf("                     .  ..___\\  /.  . __.                    \n");        
+        printf("                     |\\ |[__  >< |  |(__                     \n");          
+        printf("                     | \\|[___/  \\|__|.__)                   \n");        
+        printf("                Conectando problemas a soluÁıes               \n");  
+        printf("  +---------------------------------------------------------+\n");
+        printf("  |        ________________                                 |\n"); 
+        printf("  |       /               /|                                |\n"); 
+        printf("  |      /_______________/ |      ========= Menu =========  |\n");
+        printf("  |      |  __________  |  |      [1] Computador / OS       |\n"); 
+        printf("  |      | |          | |  |      [2] Rede / Internet       |\n"); 
+        printf("  |      | |   Help!  | |  |      [3] Teclado / Mouse       |\n"); 
+        printf("  |      | |    :(    | |  |      [4] Outro                 |\n"); 
+        printf("  |      | |__________| | /       [5] Sair                  |\n");  
+        printf("  |      |______________|/ ___/\\                            |\n");     
+        printf("  |     |____>______<_____/     \\                           |\n");             
+        printf("  |    / = ==== ==== ==== /|    _|_                         |\n"); 
+        printf("  |   / ========= === == / /   ////                         |\n"); 
+        printf("  |  /   ========= ===  / /   /   /                         |\n"); 
+        printf("  | <__________________<_/    '--'                          |\n"); 
+        printf("  |                                                         |\n"); 
+        printf("  +---------------------------------------------------------+\n");
+
+        printf("\n\t\t\t OpÁ„o: ");
+        scanf(" %c", &escolha);
+        
+        if(escolha < '1' || escolha > '5')
+            continue;
+
+        switch (escolha)
+        {
+        case '1':
+            entradaDeDados("Computador / OS");
+            break;
+        case '2':
+            entradaDeDados("Rede / Internet");
+            break;
+        case '3':
+            entradaDeDados("Teclado / Mouse");
+            break;
+        case '4':
+            entradaDeDados("Outro Problema");
+            break;
+        case '5':
+            loopInfinito = 0;
+            break;
+        }
+    } while (loopInfinito);
+
+    return 0;
+}
+
 char * dataSistema()
 {
     struct tm *p;
@@ -89,9 +162,10 @@ void telaDeInstrucao(int opcao)
             printf("  |                          \\\\//                           |\n"); 
             printf("  |                           \\/                            |\n"); 
             printf("  |                                                         |\n"); 
-            printf("  |              Caso sua impressora n„o esteja             |\n"); 
-            printf("  |              funcionando vocÍ poder· salvar             |\n"); 
-            printf("  |              o arquivo consigo como backup.             |\n"); 
+            printf("  |                                                         |\n"); 
+            printf("  |        Caso sua impressora n„o esteja funcionando,      |\n"); 
+            printf("  |        vocÍ poder· salvar o arquivo consigo em um       |\n"); 
+            printf("  |        dispositivo removÌvel como backup.               |\n"); 
             printf("  |                                                         |\n"); 
             printf("  |                                                         |\n"); 
             printf("  |         Pressione enter para retornar ao menu...        |\n"); 
@@ -131,7 +205,7 @@ void telaDeInstrucao(int opcao)
     
 }
 
-void telaDeEnvio ()
+void telaDeEnvio()
 {
 
     FILE *fp;
@@ -196,7 +270,8 @@ char * matriculaAluno()
 
 }
 
-char * nomeDoAluno(){
+char * nomeDoAluno()
+{
 
     char *pnomeAluno, nome_Aluno[NOMEALUNO_MAX];
     int loop = 1, test = 0;
@@ -251,6 +326,7 @@ char * idComputador()
     return ptrID;
 
 }
+ 
 
 char * localOcorrencia()
 {
@@ -329,73 +405,10 @@ void entradaDeDados (char *problema)
     return;
 }
 
-int main()
-{   
-    setlocale(LC_ALL, "Portuguese");
-    int loopInfinito = 1;
-    char escolha;
-
-    do {
-        system("cls");
-        printf("                     .  ..___\\  /.  . __.                    \n");        
-        printf("                     |\\ |[__  >< |  |(__                     \n");          
-        printf("                     | \\|[___/  \\|__|.__)                   \n");        
-        printf("                Conectando problemas a soluÁıes               \n");  
-        printf("  +---------------------------------------------------------+\n");
-        printf("  |        ________________                                 |\n"); 
-        printf("  |       /               /|                                |\n"); 
-        printf("  |      /_______________/ |      ========= Menu =========  |\n");
-        printf("  |      |  __________  |  |      [1] Computador / OS       |\n"); 
-        printf("  |      | |          | |  |      [2] Rede / Internet       |\n"); 
-        printf("  |      | |   Help!  | |  |      [3] Teclado / Mouse       |\n"); 
-        printf("  |      | |    :(    | |  |      [4] Outro                 |\n"); 
-        printf("  |      | |__________| | /       [5] Sair                  |\n");  
-        printf("  |      |______________|/ ___/\\                            |\n");     
-        printf("  |     |____>______<_____/     \\                           |\n");             
-        printf("  |    / = ==== ==== ==== /|    _|_                         |\n"); 
-        printf("  |   / ========= === == / /   ////                         |\n"); 
-        printf("  |  /   ========= ===  / /   /   /                         |\n"); 
-        printf("  | <__________________<_/    '--'                          |\n"); 
-        printf("  |                                                         |\n"); 
-        printf("  +---------------------------------------------------------+\n");
-
-        printf("\n\t\t\t OpÁ„o: ");
-        scanf(" %c", &escolha);
-        
-        if(escolha < '1' || escolha > '5')
-            continue;
-
-        switch (escolha)
-        {
-        case '1':
-            entradaDeDados("Computador / OS");
-            break;
-        case '2':
-            entradaDeDados("Rede / Internet");
-            break;
-        case '3':
-            entradaDeDados("Teclado / Mouse");
-            break;
-        case '4':
-            entradaDeDados("Outro Problema");
-            break;
-        case '5':
-            loopInfinito = 0;
-            break;
-        }
-    } while (loopInfinito);
-
-    return 0;
-}
 //Todos: 
 //!IMPORTANTE!
 // 0 - Definir o local padrao para salvar o arquivo(area de trabalho) 
-// O usuario dever√£o ser informado do local para poder enviar por email
 
-// 1 - Padronizar a interface de usu√°rio(quantidade de linhas, margens, etc..) 
-// 2 - Criar fun√ß√µes para os campos de entrada de dados
-// 3 - Utilizar a data do sistema 
-// 4 - Filtragem das entradas de dados
-// 5 - Melhorar os nomes das vari·iveis
-// 7 - Checar por poss√≠veis erros de ortografia
+// 1 - Encontrar o email da area de TI do IFSP 
+// 2 - Checar por possÌ≠veis erros de ortografia
 
