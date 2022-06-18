@@ -10,7 +10,6 @@
 #define NOMEALUNO_MAX 30
 #define ID_TAM 13
 
-
 // Protótipos das funções
 char * dataSistema();
 void caixaAlta();
@@ -21,8 +20,6 @@ char * matriculaAluno();
 char * nomeDoAluno();
 char * idComputador();
 void entradaDeDados ();
-
-
 
 int main()
 {   
@@ -106,7 +103,6 @@ void caixaAlta(char *string)
     int tamStr = strlen(string), i;
     for(i = 0; i <= tamStr; i++)
         string[i] = toupper(string[i]);
-  
 }
 
 void geraArquivo(char *matricula, char *nome_Aluno, char *id, char *lab, char *descricao, char *problema) 
@@ -202,12 +198,10 @@ void telaDeInstrucao(int opcao)
         } while (tecla != '\n');
         break;
     }
-    
 }
 
 void telaDeEnvio()
 {
-
     FILE *fp;
 	fp = fopen("file.txt", "r");
 	char opcao;
@@ -267,12 +261,10 @@ char * matriculaAluno()
     strcpy(ptMatricula, matricula);
 
     return ptMatricula;
-
 }
 
 char * nomeDoAluno()
 {
-
     char *pnomeAluno, nome_Aluno[NOMEALUNO_MAX];
     int loop = 1, test = 0;
 
@@ -301,7 +293,6 @@ char * nomeDoAluno()
     strcpy(pnomeAluno, nome_Aluno);
 
     return pnomeAluno;
-    
 }
 
 char * idComputador()
@@ -324,10 +315,8 @@ char * idComputador()
     strcpy(ptrID, id);
 
     return ptrID;
-
 }
  
-
 char * localOcorrencia()
 {
     int opcao, i;
@@ -347,7 +336,6 @@ char * localOcorrencia()
     strcpy(lab, labs[opcao - 1]);
 
     return lab;
-
 }
 
 char * descricaoProblema(char * entradaUsuario)
@@ -365,12 +353,10 @@ char * descricaoProblema(char * entradaUsuario)
     strcpy(descricao, entradaUsuario);
     
     return descricao;
-
 }
 
 void entradaDeDados (char *problema) 
 {
-
     char entradaUsuario[MAX_CHAR], *nomeAluno, *matricula, *id, *lab, *descricao; //*data,
 
     system("cls");
