@@ -189,7 +189,7 @@ void telaDeInstrucao(int opcao)
             printf("  |       seu email. Ao logar, anexe o arquivo gerado e     |\n"); 
             printf("  |       o envie para o seguinte endereço:                 |\n"); 
             printf("  |                                                         |\n"); 
-            printf("  |                   central_ti@ifsp.edu.br                |\n"); 
+            printf("  |             central_ti_nexus@ifsp.edu.br                |\n"); 
             printf("  |                                                         |\n"); 
             printf("  |         Pressione enter para retornar ao menu...        |\n"); 
             printf("  |                                                         |\n"); 
