@@ -267,7 +267,7 @@ char * matriculaAluno()
 char * nomeDoAluno()
 {
     char *pnomeAluno, nome_Aluno[NOMEALUNO_MAX];
-    int loop = 1, test = 0;
+    int loop = 1, test = 0, i;
 
     do
     {
@@ -275,7 +275,7 @@ char * nomeDoAluno()
         _flushall();
         gets(nome_Aluno);
         
-        for (int i = 0; nome_Aluno[i] != '\0'; i++){
+        for (i = 0; nome_Aluno[i] != '\0'; i++){
 
             if(isdigit(nome_Aluno[i]) || ispunct(nome_Aluno[i])){
                 printf("   *** Valores invalidos! ***\n");
