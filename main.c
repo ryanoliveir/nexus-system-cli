@@ -5,22 +5,22 @@
 #include <locale.h>
 #include <time.h>
 
-#define MAX_CHAR 300
+#define MAX_CHAR 100
 #define TAM_MATRICULA 9
-#define NOMEALUNO_MAX 100
+#define NOMEALUNO_MAX 30
 #define ID_TAM 13
 
 
 // Protótipos das funções
 char * dataSistema();
-void caixaAlta(char *string);
-void geraArquivo(char *matricula, char *nome_Aluno, char *id, char *lab, char *descricao, char *problema) ;
-void telaDeInstrucao(int opcao);
+void caixaAlta();
+void geraArquivo() ;
+void telaDeInstrucao();
 void telaDeEnvio();
 char * matriculaAluno();
 char * nomeDoAluno();
 char * idComputador();
-void entradaDeDados (char *problema);
+void entradaDeDados ();
 
 
 
@@ -381,7 +381,7 @@ void entradaDeDados (char *problema)
     
     printf("  +- Dados do requisitor ----------------------------+\n");
 
-    //Filtro do Nome do Aluno (Não pode ter número nem caracteres especiais)
+    //Entrada do nome do aluno
     nomeAluno = nomeDoAluno();
 
     //Entrada da matricula do aluno
@@ -390,11 +390,11 @@ void entradaDeDados (char *problema)
 	printf("\n");
     printf("  +- Dados do problema ------------------------------+\n");
     
-    //Entrada da identificação do computador
-    id = idComputador();
-
     // Escolha do local de ocorrencia do problema
     lab = localOcorrencia();
+    
+    //Entrada da identificação do computador
+    id = idComputador();    
     
     //Entrada da matricula do aluno
     descricao = descricaoProblema(entradaUsuario);
