@@ -25,7 +25,7 @@ int main()
 {   
     setlocale(LC_ALL, "Portuguese");
     int loopInfinito = 1;
-    char escolha;
+    int escolha;
 
     do {
         system("cls");
@@ -52,26 +52,27 @@ int main()
         printf("  +---------------------------------------------------------+\n");
 
         printf("\n\t\t\t Opção: ");
-        scanf(" %c", &escolha);
+        _flushall();
+        scanf(" %d", &escolha);
         
-        if(escolha < '1' || escolha > '5')
+        if(escolha < 1 || escolha > 5)
             continue;
 
         switch (escolha)
         {
-        case '1':
+        case 1:
             entradaDeDados("Computador / OS");
             break;
-        case '2':
+        case 2:
             entradaDeDados("Rede / Internet");
             break;
-        case '3':
+        case 3:
             entradaDeDados("Teclado / Mouse");
             break;
-        case '4':
+        case 4:
             entradaDeDados("Outro Problema");
             break;
-        case '5':
+        case 5:
             loopInfinito = 0;
             break;
         }
@@ -277,7 +278,7 @@ char * nomeDoAluno()
         for (int i = 0; nome_Aluno[i] != '\0'; i++){
 
             if(isdigit(nome_Aluno[i]) || ispunct(nome_Aluno[i])){
-                printf("   Valores invalidos encontrados. Tente novamente!\n");
+                printf("   *** Valores invalidos! ***\n");
                 test++;
                 break;
             }
