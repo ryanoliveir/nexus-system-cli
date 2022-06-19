@@ -13,7 +13,7 @@
 // Protótipos das funções
 char * dataSistema();
 void caixaAlta();
-void geraArquivo() ;
+void geraArquivo();
 void telaDeInstrucao();
 void telaDeEnvio();
 char * matriculaAluno();
@@ -51,7 +51,7 @@ int main()
         printf("  |                                                         |\n"); 
         printf("  +---------------------------------------------------------+\n");
 
-        printf("\n\t\t\t Opção: ");
+        printf("\n\t\t\t   Opção: ");
         _flushall();
         scanf(" %d", &escolha);
         
@@ -203,18 +203,17 @@ void telaDeInstrucao(int opcao)
 
 void telaDeEnvio()
 {
-    FILE *fp;
-	fp = fopen("file.txt", "r");
 	char opcao;
-		
-	fclose(fp);
+    //FILE *fp;
+	//fp = fopen("file.txt", "r");
+	//fclose(fp);
 
     do {
         system("cls");
         printf("  +---------------------------------------------------------+\n");
         printf("  |                                                         |\n"); 
         printf("  |                                                         |\n"); 
-        printf("  |                 Escolha a opção de envio:               |\n");
+        printf("  |                Escolha a opção de envio:                |\n");
         printf("  |                                                         |\n"); 
         printf("  |                _____                                    |\n");
         printf("  |              _|_____|_          +-------+               |\n");
@@ -243,25 +242,6 @@ void telaDeEnvio()
         }
         
     } while (opcao < '1' || opcao > '2');
-}
-
-char * matriculaAluno()
-{   
-    char *ptMatricula, matricula[TAM_MATRICULA + 1];
-    do {
-        printf("   Matricula: ");
-        scanf("%s",matricula);
-
-        if(strlen(matricula) != TAM_MATRICULA )
-        	printf("   *** Matricula inválida! ***\n");
-
-    } while (strlen(matricula) != TAM_MATRICULA);
-   
-    caixaAlta(matricula);
-    ptMatricula = (char *)malloc(strlen(matricula) * sizeof(char));
-    strcpy(ptMatricula, matricula);
-
-    return ptMatricula;
 }
 
 char * nomeDoAluno()
@@ -294,6 +274,25 @@ char * nomeDoAluno()
     strcpy(pnomeAluno, nome_Aluno);
 
     return pnomeAluno;
+}
+
+char * matriculaAluno()
+{   
+    char *ptMatricula, matricula[TAM_MATRICULA + 1];
+    do {
+        printf("   Matricula: ");
+        scanf("%s",matricula);
+
+        if(strlen(matricula) != TAM_MATRICULA )
+        	printf("   *** Matricula inválida! ***\n");
+
+    } while (strlen(matricula) != TAM_MATRICULA);
+   
+    caixaAlta(matricula);
+    ptMatricula = (char *)malloc(strlen(matricula) * sizeof(char));
+    strcpy(ptMatricula, matricula);
+
+    return ptMatricula;
 }
 
 char * idComputador()
@@ -358,7 +357,7 @@ char * descricaoProblema(char * entradaUsuario)
 
 void entradaDeDados (char *problema) 
 {
-    char entradaUsuario[MAX_CHAR], *nomeAluno, *matricula, *id, *lab, *descricao; //*data,
+    char entradaUsuario[MAX_CHAR], *nomeAluno, *matricula, *id, *lab, *descricao; 
 
     system("cls");
     printf("  +--------------------------------------------------+\n");
@@ -366,7 +365,7 @@ void entradaDeDados (char *problema)
     printf("  +--------------------------------------------------+\n");
     printf("   Problema: %s\n\n", problema);
     
-    printf("  +- Dados do requisitor ----------------------------+\n");
+    printf("  +- Dados do solicitante ---------------------------+\n");
 
     //Entrada do nome do aluno
     nomeAluno = nomeDoAluno();
@@ -397,5 +396,6 @@ void entradaDeDados (char *problema)
 // 0 - Definir o local padrao para salvar o arquivo(area de trabalho) 
 
 // 1 - Encontrar o email da area de TI do IFSP 
-// 2 - Checar por possí­veis erros de ortografia
+// 2 - Definir um nome para o arquivo
+// 3 - Checar por possí­veis erros de ortografia
 
