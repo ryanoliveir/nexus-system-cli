@@ -109,7 +109,7 @@ void caixaAlta(char *string)
 void geraArquivo(char *matricula, char *nome_Aluno, char *id, char *lab, char *descricao, char *problema) 
 {
     FILE * fp;
-    fp = fopen("./file.txt", "w");
+    fp = fopen("./ticket.txt", "w");
     int i;
 
     if(!fp) {
@@ -189,7 +189,7 @@ void telaDeInstrucao(int opcao)
             printf("  |       seu email. Ao logar, anexe o arquivo gerado e     |\n"); 
             printf("  |       o envie para o seguinte endereço:                 |\n"); 
             printf("  |                                                         |\n"); 
-            printf("  |             central_ti_nexus@ifsp.edu.br                |\n"); 
+            printf("  |                    cti.jr@ifsp.edu.br                   |\n"); 
             printf("  |                                                         |\n"); 
             printf("  |         Pressione enter para retornar ao menu...        |\n"); 
             printf("  |                                                         |\n"); 
@@ -232,7 +232,7 @@ void telaDeEnvio()
 
         switch(opcao) {
             case '1':
-                system("start notepad /p file.txt");
+                system("start notepad /p ticket.txt");
                 telaDeInstrucao(1);
                 break;
             case '2':
@@ -394,7 +394,5 @@ void entradaDeDados (char *problema)
 //!IMPORTANTE!
 // 0 - Definir o local padrao para salvar o arquivo(area de trabalho) 
 
-// 1 - Encontrar o email da area de TI do IFSP 
-// 2 - Definir um nome para o arquivo
-// 3 - Checar por possí­veis erros de ortografia
+// 3 - Checar por possí­veis erros de ortografia (checkado)
 
