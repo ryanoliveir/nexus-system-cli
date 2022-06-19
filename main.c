@@ -341,9 +341,8 @@ char * localOcorrencia()
 char * descricaoProblema(char * entradaUsuario)
 {
     char *descricao;
-    //int entradaUsuarioTam;
 
-    printf("   Descrição (Máx. 300 caracteres): ");
+    printf("   Descrição (Máx. 100 caracteres): ");
     _flushall();
     fgets(entradaUsuario, MAX_CHAR, stdin);
 
