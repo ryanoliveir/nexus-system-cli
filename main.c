@@ -204,9 +204,6 @@ void telaDeInstrucao(int opcao)
 void telaDeEnvio()
 {
 	char opcao;
-    //FILE *fp;
-	//fp = fopen("file.txt", "r");
-	//fclose(fp);
 
     do {
         system("cls");
@@ -330,6 +327,10 @@ char * localOcorrencia()
         printf("   Opcao: ");
         _flushall();
         scanf("%d", &opcao);
+
+        if(opcao < 1 || opcao > 5)
+            printf("   *** Laboratório inexistente! ***\n");
+
     } while (opcao < 1 || opcao > 5);
 
     lab = (char *) malloc(5);
@@ -394,5 +395,4 @@ void entradaDeDados (char *problema)
 //!IMPORTANTE!
 // 0 - Definir o local padrao para salvar o arquivo(area de trabalho) 
 
-// 3 - Checar por possí­veis erros de ortografia (checkado)
 
