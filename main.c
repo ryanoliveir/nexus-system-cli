@@ -201,6 +201,49 @@ void telaDeInstrucao(int opcao)
     }
 }
 
+void escolhaProvedor() {
+	int opcao;
+    
+    do {
+        system("cls");
+        printf("  +---------------------------------------------------------+\n");
+        printf("  |                                                         |\n"); 
+        printf("  |                                                         |\n"); 
+        printf("  |               Escolha o provedor de email:              |\n");
+        printf("  |                                                         |\n"); 
+        printf("  |                        __     __              __        |\n");
+        printf("  |        /||||\\          |\\\\   //|           __/  \\_      |\n");
+        printf("  |        ||  ||          ||\\\\_//||         _/  \\_   \\     |\n");
+        printf("  |        ||  ||          || \\_/ ||        /      \\__/     |\n");
+        printf("  |        \\||||/          ||     ||        \\______/        |\n");
+        printf("  |                                                         |\n"); 
+        printf("  |     [1] Outlook        [2] Gmail        [3] ICloud      |\n");
+        printf("  |                                                         |\n"); 
+        printf("  |                                                         |\n"); 
+        printf("  |                                                         |\n"); 
+        printf("  +---------------------------------------------------------+\n");
+        printf("                           Opção: ");	
+        
+        _flushall();
+        scanf(" %d", &opcao);
+
+        switch(opcao) {
+            case 1:
+                system("start explorer https://login.live.com/");
+                
+                break;
+            case 2:
+                system("start explorer https://gmail.com/");
+                
+                break;
+            case 3:
+                system("start explorer https://www.icloud.com/");
+                
+                break;
+        }
+    } while (opcao < 1 || opcao > 3);
+}
+
 void telaDeEnvio()
 {
 	char opcao;
@@ -233,7 +276,8 @@ void telaDeEnvio()
                 telaDeInstrucao(1);
                 break;
             case '2':
-                system("start explorer https://login.live.com/");
+                //system("start explorer https://login.live.com/");
+                escolhaProvedor();
                 telaDeInstrucao(2);
                 break;
         }
@@ -391,8 +435,11 @@ void entradaDeDados (char *problema)
     return;
 }
 
-//Todos: 
-//!IMPORTANTE!
-// 0 - Definir o local padrao para salvar o arquivo(area de trabalho) 
+/* ##### Explicação da função escolhaProvedor() (linha 204) #### */
 
-
+// - A função será chamada quando o usuário escolher a opção de envio por email.
+// - Irá mostrar as opções disponíveis de provedores para a escolha do usuário.
+// - Com a opção escolhida, o programa irá executar a função system() que da acesso
+//   ao terminal do sistema.
+// - Contendo apenas um argumento, o comando system("start explorer <url>") irá
+//   executar o navegador IE/Edge com a url da pagina inicial do provedor escolhido. 
